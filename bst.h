@@ -26,6 +26,18 @@ class Node
     Key<K> k;
     Data<D> d;
 
+    bool empty();
+    void insert(D d, K k);
+    D get(K k);
+    void remove(K k);
+    D max_data();
+    K max_key();
+    D min_data();
+    K min_key();
+    K successor(K k);
+    string in_order();
+    void trim(low,high);
+
 };
 
 template<typename K, typename D>
