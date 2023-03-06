@@ -7,7 +7,7 @@ using namespace std;
 template<typename T>
 class Key
 {
-    int k;
+    T k;
 };
 
 template<typename T>
