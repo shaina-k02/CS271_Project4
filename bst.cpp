@@ -10,7 +10,19 @@ bool BST<K,D>::empty(){
 
 template<typename K, typename D>
 void BST<K,D>::insert(D d, K k){
-
+    if (key == NULL) {
+        Node* newNode = new Node;
+        newNode->d = d;
+        newNode->left = NULL;
+        newNode->right = NULL;
+        return newNode;
+    }
+    if (d < k->d) {
+        k->left = insert(k->left, d);
+    } else {
+        root->right = insert(k->right, d);
+    }
+    return k;
 }
 
 template<typename K, typename D>
