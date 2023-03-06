@@ -4,32 +4,32 @@
 using namespace std;
 
 
-template<typename T>
+template<typename K>
 class Key
 {
-    T k;
+    K k;
 };
 
-template<typename T>
+template<typename D>
 class Data
 {
-    T data;
+    D data;
 };
 
-template<typename T>
+template<typename K, typename D>
 class Node
 {
     public:
-    Node<T> *p; 
-    Node<T> *left;
-    Node<T> *right;
-    Key<T> k;
-    Data<T> d;
+    Node<K, D> *p; 
+    Node<K, D> *left;
+    Node<K, D> *right;
+    Key<K> k;
+    Data<D> d;
 
 };
 
-template<typename T>
+template<typename K, typename D>
 class BST
 {
-    Node<T> *root;
+    Node<K, D> *root;
 };
