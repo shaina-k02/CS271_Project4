@@ -1,25 +1,62 @@
 #include <iostream>
+#include "bst.h"
 using namespace std;
 
-empty()
 
-insert(d,k)
+template<typename K, typename D>
+bool BST<K,D>::empty(){
 
-get(k)
+}
 
-remove(k)
+template<typename K, typename D>
+void BST<K,D>::insert(D d, K k){
 
-max_data()
+}
 
-max_key()
+template<typename K, typename D>
+D BST<K,D>::get(K k){
 
-min_data()
+}
 
-min_key()
+template<typename K, typename D>
+void BST<K,D>::remove(K k){
 
-successor(k)
+}
 
-in_order()
+template<typename K, typename D>
+D BST<K,D>::max_data(){
 
-trim(low,high)
+}
+
+template<typename K, typename D>
+K BST<K,D>::max_key(){
+
+}
+
+template<typename K, typename D>
+D BST<K,D>::min_data(){
+
+}
+
+template<typename K, typename D>
+K BST<K,D>::min_key(){
+
+}
+
+template<typename K, typename D>
+K BST<K,D>::successor(K k){
+
+}
+
+template<typename K, typename D>
+string BST<K,D>::in_order(){
+
+}
+
+template<typename K, typename D>
+void BST<K,D>::trim(K low, K high){
+
+}
+
+
 

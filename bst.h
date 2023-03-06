@@ -26,6 +26,13 @@ class Node
     Key<K> k;
     Data<D> d;
 
+};
+
+template<typename K, typename D>
+class BST
+{
+    Node<K, D> *root;
+
     bool empty();
     void insert(D d, K k);
     D get(K k);
@@ -36,12 +43,5 @@ class Node
     K min_key();
     K successor(K k);
     string in_order();
-    void trim(low,high);
-
-};
-
-template<typename K, typename D>
-class BST
-{
-    Node<K, D> *root;
+    void trim(K low, K high);
 };
