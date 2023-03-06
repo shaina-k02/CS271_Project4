@@ -32,7 +32,28 @@ D BST<K,D>::get(K k){
 
 template<typename K, typename D>
 void BST<K,D>::remove(K k){
-
+if (root == NULL) {
+        return root;
+    }
+    if (k < root->d) {
+        root->left = remove(root->left, k);
+    } else if (key > root->d) {
+        root->right = remove(root->right, k);
+    } else {
+        if (root->left == NULL) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == NULL) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        Node* temp = findMin(root->right);
+        root->d = temp->data;
+        root->right = remove(root->right, temp->d);
+    }
+    return root;
 }
 
 template<typename K, typename D>
@@ -42,7 +63,13 @@ D BST<K,D>::max_data(){
 
 template<typename K, typename D>
 K BST<K,D>::max_key(){
-
+if (root == NULL) {
+        return -1; // or some other value to indicate an empty tree
+    }
+    while (root->right != NULL) {
+        root = root->right;
+    }
+    return root->data;
 }
 
 template<typename K, typename D>
@@ -52,6 +79,13 @@ D BST<K,D>::min_data(){
 
 template<typename K, typename D>
 K BST<K,D>::min_key(){
+     if (root == NULL) {
+        return -1; // or some other value to indicate an empty tree
+    }
+    while (root->left != NULL) {
+        root = root->left;
+    }
+    return root->data;
 
 }
 
@@ -62,7 +96,12 @@ K BST<K,D>::successor(K k){
 
 template<typename K, typename D>
 string BST<K,D>::in_order(){
-
+    if (root == NULL) {
+        return;
+    }
+    in_order(root->left);
+    cout << root->data << " ";
+    in_order(root->right);
 }
 
 template<typename K, typename D>
