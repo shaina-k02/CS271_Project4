@@ -42,7 +42,7 @@ void BST<K,D>::insert(D d, K k){
 }
 
 template<typename K, typename D>
-D BST<K,D>::get(K key){
+K BST<K,D>::get(K key){
     Node<typename K, typename D>*x=root;
     while ((x->k!=key)&& (x!=nullptr)){
         if (key<x->k){
@@ -81,7 +81,6 @@ if (root == NULL) {
         root->d = temp->data;
         root->right = remove(root->right, temp->d);
     }
-    return root;
 }
 
 template<typename K, typename D>
@@ -179,14 +178,25 @@ void BST<K,D>::trim(K low, K high){
 // Trims the BST such that all nodes with values outside the range [low, high] are removed.
  TreeNode* trim(TreeNode* root, int low, int high) {
     if (root == NULL) {
-        return NULL;
+        return;
     }
     
-    // If the current node's value is outside the range, remove it and return the trimmed subtree.
     if (root->val < low) {
-        return trim(root->right, low, high);
+        // The current node's value is outside the range, so we remove it and trim its right subtree.
+        TreeNode* right = root->right;
+        delete root;
+        root = right;
+        trim(root, low, high);
     } else if (root->val > high) {
-        return trim(root->left, low, high);
+        // The current node's value is outside the range, so we remove it and trim its left subtree.
+        TreeNode* left = root->left;
+        delete root;
+        root = left;
+        trim(root, low, high);
+    } else {
+        // The current node's value is within the range, so we recursively trim its left and right subtrees.
+        trim(root->left, low, high);
+        trim(root->right, low, high);
     }
     
     // Recursively trim the left and right subtrees.
@@ -197,6 +207,7 @@ void BST<K,D>::trim(K low, K high){
 }
 
 }
+
 
 
 
