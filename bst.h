@@ -66,6 +66,11 @@ class BST
     BST(){
         root=nullptr
     }
+    ~BST(){
+       Node<K,D>*x=root;
+       Node<K,D>*r=x->right;
+       Node<K,D>*l=x->left;
+    }
 
 
 

@@ -18,8 +18,8 @@ void BST<K,D>::insert(D d, K k){
     newNode->d = d;
     newNode->left = nullptr;
     newNode->right = nullptr;
-    Node<typename K, typename D>*x=root;
-    Node<typename K, typename D>*y=nullptr;
+    Node<K,D>*x=root;
+    Node<K,D>*y=nullptr;
     while (x!=nullptr){
         y=x;
         if (k<x->k){
@@ -43,7 +43,7 @@ void BST<K,D>::insert(D d, K k){
 
 template<typename K, typename D>
 D BST<K,D>::get(K key){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     while ((x->k!=key)&& (x!=nullptr)){
         if (key<x->k){
             x=x->left;
@@ -60,7 +60,7 @@ D BST<K,D>::get(K key){
 
 template<typename K, typename D>
 void BST<K,D>::remove(K k){
-    Node<typename K, typename D>*x=root;
+    Node<K, D>*x=root;
     if (root == NULL) {
         return root;
     }
@@ -79,7 +79,7 @@ void BST<K,D>::remove(K k){
         transplant(x, x->left);
     }
     else{
-        Node<typename K, typename D>*y=x->right;
+        Node<K, D>*y=x->right;
         while(y->left!=nullptr){
             y=y->left
         }
@@ -97,7 +97,7 @@ void BST<K,D>::remove(K k){
 
 template<typename K, typename D>
 D BST<K,D>::max_data(){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     if (x==nullptr){
         return;
     }
@@ -109,7 +109,7 @@ D BST<K,D>::max_data(){
 
 template<typename K, typename D>
 K BST<K,D>::max_key(){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
@@ -121,7 +121,7 @@ K BST<K,D>::max_key(){
 
 template<typename K, typename D>
 D BST<K,D>::min_data(){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     if (x==nullptr){
         return;
     }
@@ -133,7 +133,7 @@ D BST<K,D>::min_data(){
 
 template<typename K, typename D>
 K BST<K,D>::min_key(){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
@@ -146,7 +146,7 @@ K BST<K,D>::min_key(){
 
 template<typename K, typename D>
 K BST<K,D>::successor(K k){
-    Node<typename K, typename D>*x=root;
+    Node<K,D>*x=root;
     while ((x->k!=key)&& (x!=nullptr)){
         if (key<x->k){
             x=x->left;
@@ -165,7 +165,7 @@ K BST<K,D>::successor(K k){
         }
         return x->k;
     }
-    Node<typename K, typename D>*y=x->p;
+    Node<K,D>*y=x->p;
     while (y!=nullptr && x==y->right){
         x=y;
         y=y.p;
