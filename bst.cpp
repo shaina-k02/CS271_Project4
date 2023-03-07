@@ -85,13 +85,14 @@ D BST<K,D>::max_data(){
 
 template<typename K, typename D>
 K BST<K,D>::max_key(){
-if (root == NULL) {
+    Node<typename K, typename D>*x=root;
+    if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
-    while (root->right != NULL) {
-        root = root->right;
+    while (x->right != nullptr) {
+        x = x->right;
     }
-    return root->data;
+    return x->k;
 }
 
 template<typename K, typename D>
@@ -108,13 +109,14 @@ D BST<K,D>::min_data(){
 
 template<typename K, typename D>
 K BST<K,D>::min_key(){
-     if (root == NULL) {
+    Node<typename K, typename D>*x=root;
+    if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
-    while (root->left != NULL) {
-        root = root->left;
+    while (x->left != nullptr) {
+        x = x->left;
     }
-    return root->data;
+    return x->k;
 
 }
 
