@@ -42,7 +42,7 @@ void BST<K,D>::insert(D d, K k){
 }
 
 template<typename K, typename D>
-K BST<K,D>::get(K key){
+D BST<K,D>::get(K key){
     Node<typename K, typename D>*x=root;
     while ((x->k!=key)&& (x!=nullptr)){
         if (key<x->k){
@@ -60,23 +60,32 @@ K BST<K,D>::get(K key){
 
 template<typename K, typename D>
 void BST<K,D>::remove(K k){
-if (root == NULL) {
+    Node<typename K, typename D>*x=root;
+    if (root == NULL) {
         return root;
     }
-    if (k < root->d) {
-        root->left = remove(root->left, k);
-    } else if (key > root->d) {
-        root->right = remove(root->right, k);
-    } else {
-        if (root->left == NULL) {
-            Node* temp = root->right;
-            delete root;
-            return temp;
+    while (x->k!=k && x!=nullptr){
+        if (k < x->k) {
+            x=x->left;
+        }
+        else if (key > x->k) {
+            x=x->right;
+        }
+    }
+    if (x->left == nullptr) {
+        transplant(x, x->right);
+    }
+    else if(x->right==nullptr){
+        transplant(x, x->left);
+    }
+    else{
+        
+    }
         } else if (root->right == NULL) {
             Node* temp = root->left;
             delete root;
             return temp;
-        }
+        
         Node* temp = findMin(root->right);
         root->d = temp->data;
         root->right = remove(root->right, temp->d);
@@ -175,8 +184,8 @@ string BST<K,D>::in_order(){
 template<typename K, typename D>
 void BST<K,D>::trim(K low, K high){
 
-// Trims the BST such that all nodes with values outside the range [low, high] are removed.
- TreeNode* trim(TreeNode* root, int low, int high) {
+    // Trims the BST such that all nodes with values outside the range [low, high] are removed.
+    TreeNode* trim(TreeNode* root, int low, int high) 
     if (root == NULL) {
         return;
     }
@@ -206,6 +215,20 @@ void BST<K,D>::trim(K low, K high){
     return;
 }
 
+template<typename K, typename D>
+void BST<K,D>::transplant(Node<K, D>* x, Node<K, D>* y){
+    if (x->p==nullptr){
+        root=y;
+    }
+    else if(x=x->p->left){
+        x->p->left=y;
+    }
+    else{
+        x->p->right=y;
+    }
+    if (y!=nullptr){
+        y->p=x->p;
+    }
 }
 
 

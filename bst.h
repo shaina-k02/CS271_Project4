@@ -67,7 +67,7 @@ class BST
         root=nullptr
     }
 
-    
+
 
     bool empty();
     void insert(D d, K k);
@@ -80,4 +80,5 @@ class BST
     K successor(K k);
     string in_order();
     void trim(K low, K high);
+    void transplant(Node<K, D>* x, Node<K, D>* y)//used for remove
 };
