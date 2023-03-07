@@ -133,7 +133,11 @@ K BST<K,D>::successor(K k){
         return;
     }
     if (x->right!=nullptr){
-        //see if theres a way to do the minkey thing here, probs not though
+        x=x->right;
+        while(x->left!=nullptr){
+            x=x->left
+        }
+        return x->k;
     }
     Node<typename K, typename D>*y=x->p;
     while (y!=nullptr && x==y->right){
