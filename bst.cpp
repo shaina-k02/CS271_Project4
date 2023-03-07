@@ -162,6 +162,26 @@ string BST<K,D>::in_order(){
 template<typename K, typename D>
 void BST<K,D>::trim(K low, K high){
 
+// Trims the BST such that all nodes with values outside the range [low, high] are removed.
+TreeNode* trim(TreeNode* root, int low, int high) {
+    if (root == NULL) {
+        return NULL;
+    }
+    
+    // If the current node's value is outside the range, remove it and return the trimmed subtree.
+    if (root->val < low) {
+        return trim(root->right, low, high);
+    } else if (root->val > high) {
+        return trim(root->left, low, high);
+    }
+    
+    // Recursively trim the left and right subtrees.
+    root->left = trim(root->left, low, high);
+    root->right = trim(root->right, low, high);
+    
+    return root;
+}
+
 }
 
 
