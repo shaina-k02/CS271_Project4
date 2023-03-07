@@ -5,7 +5,10 @@ using namespace std;
 
 template<typename K, typename D>
 bool BST<K,D>::empty(){
-
+    if (root==nullptr){
+        return true;
+    }
+    return false;
 }
 
 template<typename K, typename D>
@@ -26,8 +29,20 @@ void BST<K,D>::insert(D d, K k){
 }
 
 template<typename K, typename D>
-D BST<K,D>::get(K k){
-
+D BST<K,D>::get(K key){
+    Node<typename K, typename D>*x=root;
+    while ((x->k!=key)&& (x!=nullptr)){
+        if (key<x->k){
+            x=x->left;
+        }
+        else{
+            x=x->right;
+        }
+    }
+    if (x==nullptr){
+        return;
+    }
+    return x->d;
 }
 
 template<typename K, typename D>
@@ -58,40 +73,80 @@ if (root == NULL) {
 
 template<typename K, typename D>
 D BST<K,D>::max_data(){
-
+    Node<typename K, typename D>*x=root;
+    if (x==nullptr){
+        return;
+    }
+    while (x->right != nullptr){
+        x=x->right;
+    }
+    return x->d;
 }
 
 template<typename K, typename D>
 K BST<K,D>::max_key(){
-if (root == NULL) {
+    Node<typename K, typename D>*x=root;
+    if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
-    while (root->right != NULL) {
-        root = root->right;
+    while (x->right != nullptr) {
+        x = x->right;
     }
-    return root->data;
+    return x->k;
 }
 
 template<typename K, typename D>
 D BST<K,D>::min_data(){
-
+    Node<typename K, typename D>*x=root;
+    if (x==nullptr){
+        return;
+    }
+    while (x->left != nullptr){
+        x=x->left;
+    }
+    return x->d;
 }
 
 template<typename K, typename D>
 K BST<K,D>::min_key(){
-     if (root == NULL) {
+    Node<typename K, typename D>*x=root;
+    if (x == nullptr) {
         return -1; // or some other value to indicate an empty tree
     }
-    while (root->left != NULL) {
-        root = root->left;
+    while (x->left != nullptr) {
+        x = x->left;
     }
-    return root->data;
+    return x->k;
 
 }
 
 template<typename K, typename D>
 K BST<K,D>::successor(K k){
-
+    Node<typename K, typename D>*x=root;
+    while ((x->k!=key)&& (x!=nullptr)){
+        if (key<x->k){
+            x=x->left;
+        }
+        else{
+            x=x->right;
+        }
+    }
+    if (x==nullptr){
+        return;
+    }
+    if (x->right!=nullptr){
+        x=x->right;
+        while(x->left!=nullptr){
+            x=x->left
+        }
+        return x->k;
+    }
+    Node<typename K, typename D>*y=x->p;
+    while (y!=nullptr && x==y->right){
+        x=y;
+        y=y.p;
+    }
+    return y->k;
 }
 
 template<typename K, typename D>
@@ -106,25 +161,6 @@ string BST<K,D>::in_order(){
 
 template<typename K, typename D>
 void BST<K,D>::trim(K low, K high){
-
-TreeNode* trim(TreeNode* root, int low, int high) {
-    if (root == NULL) {
-        return NULL;
-    }
-    
-    // If the current node's value is outside the range, remove it and return the trimmed subtree.
-    if (root->val < low) {
-        return trim(root->right, low, high);
-    } else if (root->val > high) {
-        return trim(root->left, low, high);
-    }
-    
-    // Recursively trim the left and right subtrees.
-    root->left = trim(root->left, low, high);
-    root->right = trim(root->right, low, high);
-    
-    return root;
-}
 
 }
 
