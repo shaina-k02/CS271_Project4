@@ -79,17 +79,20 @@ void BST<K,D>::remove(K k){
         transplant(x, x->left);
     }
     else{
-        
+        Node<typename K, typename D>*y=x->right;
+        while(y->left!=nullptr){
+            y=y->left
+        }
+        if (y->p!=x){
+            transplant(y,y->right);
+            y->right=x->right;
+            y->right->p=y;
+        }
+        transplant(x,y);
+        y->left=x->left;
+        y->left->p=y
     }
-        } else if (root->right == NULL) {
-            Node* temp = root->left;
-            delete root;
-            return temp;
-        
-        Node* temp = findMin(root->right);
-        root->d = temp->data;
-        root->right = remove(root->right, temp->d);
-    }
+    return;
 }
 
 template<typename K, typename D>
