@@ -13,19 +13,32 @@ bool BST<K,D>::empty(){
 
 template<typename K, typename D>
 void BST<K,D>::insert(D d, K k){
-    if (key == NULL) {
-        Node* newNode = new Node;
-        newNode->d = d;
-        newNode->left = NULL;
-        newNode->right = NULL;
-        return newNode;
+
+    Node* newNode = new Node;
+    newNode->d = d;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+    Node<typename K, typename D>*x=root;
+    Node<typename K, typename D>*y=nullptr;
+    while (x!=nullptr){
+        y=x;
+        if (k<x->k){
+            x=x->left;
+        }
+        else{
+            x=x->right;
+        }
     }
-    if (d < k->d) {
-        k->left = insert(k->left, d);
-    } else {
-        root->right = insert(k->right, d);
+    newNode->p=y;
+    if (y==nullptr){
+        root=newNode;
     }
-    return k;
+    else if (k<y->k){
+        y->left=newNode;
+    }
+    else{
+        y->right=newNode;
+    }
 }
 
 template<typename K, typename D>
@@ -151,19 +164,20 @@ K BST<K,D>::successor(K k){
 
 template<typename K, typename D>
 string BST<K,D>::in_order(){
+    string res="";
     if (root == NULL) {
         return;
     }
-    in_order(root->left);
-    cout << root->data << " ";
-    in_order(root->right);
+    res+=root->left.in_order();
+    res+= std::to_string(root->d);
+    res+=root->right.in_order();
 }
 
 template<typename K, typename D>
 void BST<K,D>::trim(K low, K high){
 
 // Trims the BST such that all nodes with values outside the range [low, high] are removed.
-TreeNode* trim(TreeNode* root, int low, int high) {
+ TreeNode* trim(TreeNode* root, int low, int high) {
     if (root == NULL) {
         return NULL;
     }
@@ -179,7 +193,7 @@ TreeNode* trim(TreeNode* root, int low, int high) {
     root->left = trim(root->left, low, high);
     root->right = trim(root->right, low, high);
     
-    return root;
+    return;
 }
 
 }
