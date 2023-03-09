@@ -10,7 +10,6 @@ class Key
     K k;
 
     Key(){
-        k=0;
     }
 
     Key(K key){
@@ -23,22 +22,21 @@ class Data
 {
     D d;
 
-    Data(){
-        d=0;
+    Data(){    
     }
 
     Data(D data){
-        d=Data;
+        d=data;
     }
 };
 
-template<typename K, typename D>
+template<typename D, typename K>
 class Node
 {
     public:
-    Node<K, D> *p; 
-    Node<K, D> *left;
-    Node<K, D> *right;
+    Node<D, K> *p; 
+    Node<D, K> *left;
+    Node<D, K> *right;
     Key<K> k;
     Data<D> d;
 
@@ -52,24 +50,26 @@ class Node
         p=nullptr;
         left=nullptr;
         right=nullptr;
-        k= Key(key);
-        d= Data(data);
+        k= Key<K>(key);
+        d= Data<D>(data);
     }
 
 };
 
-template<typename K, typename D>
+template<typename D, typename K>
 class BST
 {
-    Node<K, D> *root;
+    Node<D, K> *root;
 
+
+    public:
     BST(){
-        root=nullptr
+        root=nullptr;
     }
     ~BST(){
-       Node<K,D>*x=root;
-       Node<K,D>*r=x->right;
-       Node<K,D>*l=x->left;
+       Node<D,K>*x=root;
+       Node<D,K>*r=x->right;
+       Node<D,K>*l=x->left;
     }
 
 
@@ -85,5 +85,5 @@ class BST
     K successor(K k);
     string in_order();
     void trim(K low, K high);
-    void transplant(Node<K, D>* x, Node<K, D>* y)//used for remove
+    void transplant(Node<K, D>* x, Node<K, D>* y);//used for remove
 };

@@ -3,8 +3,8 @@
 using namespace std;
 
 
-template<typename K, typename D>
-bool BST<K,D>::empty(){
+template<typename D, typename K>
+bool BST<D,K>::empty(){
     if (root==nullptr){
         return true;
     }
@@ -12,15 +12,15 @@ bool BST<K,D>::empty(){
 }
 
 template<typename K, typename D>
-void BST<K,D>::insert(D d, K k){
+void BST<D,K>::insert(D d, K k){
 
-    Node* newNode = new Node;
+    Node<D,K>* newNode = new Node<D,K>;
     newNode->d = d;
     newNode->k = k;
     newNode->left = nullptr;
     newNode->right = nullptr;
-    Node<K,D>*x=root;
-    Node<K,D>*y=nullptr;
+    Node<D,K>*x=root;
+    Node<D,K>*y=nullptr;
     while (x!=nullptr){
         y=x;
         if (k<x->k){
@@ -42,9 +42,9 @@ void BST<K,D>::insert(D d, K k){
     }
 }
 
-template<typename K, typename D>
-D BST<K,D>::get(K key){
-    Node<K,D>*x=root;
+template<typename D, typename K>
+D BST<D,K>::get(K key){
+    Node<D,K>*x=root;
     while ((x->k!=key)&& (x!=nullptr)){
         if (key<x->k){
             x=x->left;
@@ -59,9 +59,9 @@ D BST<K,D>::get(K key){
     return x->d;
 }
 
-template<typename K, typename D>
-void BST<K,D>::remove(K k){
-    Node<K, D>*x=root;
+template<typename D, typename K>
+void BST<D,K>::remove(K k){
+    Node<D, K>*x=root;
     if (root == NULL) {
         return;
     }
@@ -69,7 +69,7 @@ void BST<K,D>::remove(K k){
         if (k < x->k) {
             x=x->left;
         }
-        else if (key > x->k) {
+        else if (k > x->k) {
             x=x->right;
         }
     }
@@ -80,9 +80,9 @@ void BST<K,D>::remove(K k){
         transplant(x, x->left);
     }
     else{
-        Node<K, D>*y=x->right;
+        Node<D, K>*y=x->right;
         while(y->left!=nullptr){
-            y=y->left
+            y=y->left;
         }
         if (y->p!=x){
             transplant(y,y->right);
@@ -91,16 +91,16 @@ void BST<K,D>::remove(K k){
         }
         transplant(x,y);
         y->left=x->left;
-        y->left->p=y
+        y->left->p=y;
     }
     return;
 }
 
-template<typename K, typename D>
-D BST<K,D>::max_data(){
-    Node<K,D>*x=root;
+template<typename D, typename K>
+D BST<D,K>::max_data(){
+    Node<D,K>*x=root;
     if (x==nullptr){
-        Data empty;
+        Data<D> empty;
         return empty;
     }
     while (x->right != nullptr){
@@ -109,11 +109,11 @@ D BST<K,D>::max_data(){
     return x->d;
 }
 
-template<typename K, typename D>
-K BST<K,D>::max_key(){
-    Node<K,D>*x=root;
+template<typename D, typename K>
+K BST<D,K>::max_key(){
+    Node<D,K>*x=root;
     if (x == nullptr) {
-        Key empty;
+        Key<K> empty;
         return empty;// or some other value to indicate an empty tree
     }
     while (x->right != nullptr) {
@@ -122,11 +122,11 @@ K BST<K,D>::max_key(){
     return x->k;
 }
 
-template<typename K, typename D>
-D BST<K,D>::min_data(){
-    Node<K,D>*x=root;
+template<typename D, typename K>
+D BST<D,K>::min_data(){
+    Node<D,K>*x=root;
     if (x==nullptr){
-        Data empty;
+        Data<D> empty;
         return empty;
     }
     while (x->left != nullptr){
@@ -135,11 +135,11 @@ D BST<K,D>::min_data(){
     return x->d;
 }
 
-template<typename K, typename D>
-K BST<K,D>::min_key(){
-    Node<K,D>*x=root;
+template<typename D, typename K>
+K BST<D,K>::min_key(){
+    Node<D,K>*x=root;
     if (x == nullptr) {
-        Key empty;
+        Key<K> empty;
         return empty; // or some other value to indicate an empty tree
     }
     while (x->left != nullptr) {
@@ -149,11 +149,11 @@ K BST<K,D>::min_key(){
 
 }
 
-template<typename K, typename D>
-K BST<K,D>::successor(K k){
-    Node<K,D>*x=root;
-    while ((x->k!=key)&& (x!=nullptr)){
-        if (key<x->k){
+template<typename D, typename K>
+K BST<D,K>::successor(K k){
+    Node<D,K>*x=root;
+    while ((x->k!=k)&& (x!=nullptr)){
+        if (k<x->k){
             x=x->left;
         }
         else{
@@ -161,26 +161,26 @@ K BST<K,D>::successor(K k){
         }
     }
     if (x==nullptr){
-        Key empty;
+        Key<K> empty;
         return empty;
     }
     if (x->right!=nullptr){
         x=x->right;
         while(x->left!=nullptr){
-            x=x->left
+            x=x->left;
         }
         return x->k;
     }
-    Node<K,D>*y=x->p;
+    Node<D,K>*y=x->p;
     while (y!=nullptr && x==y->right){
         x=y;
-        y=y.p;
+        y=y->p;
     }
     return y->k;
 }
 
-template<typename K, typename D>
-string BST<K,D>::in_order(){
+template<typename D, typename K>
+string BST<D,K>::in_order(){
     string res="";
     if (root == NULL) {
         return res;
@@ -191,11 +191,11 @@ string BST<K,D>::in_order(){
     return res;
 }
 
-template<typename K, typename D>
-void BST<K,D>::trim(K low, K high){
+template<typename D, typename K>
+void BST<D,K>::trim(K low, K high){
 
     // Trims the BST such that all nodes with values outside the range [low, high] are removed.
-    TreeNode* trim(TreeNode* root, int low, int high) 
+    /*TreeNode* trim(TreeNode* root, int low, int high) 
     if (root == NULL) {
         return;
     }
@@ -221,16 +221,16 @@ void BST<K,D>::trim(K low, K high){
     // Recursively trim the left and right subtrees.
     root->left = trim(root->left, low, high);
     root->right = trim(root->right, low, high);
-    
+    */
     return;
 }
 
-template<typename K, typename D>
-void BST<K,D>::transplant(Node<K, D>* x, Node<K, D>* y){
+template<typename D, typename K>
+void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     if (x->p==nullptr){
         root=y;
     }
-    else if(x=x->p->left){
+    else if(x==x->p->left){
         x->p->left=y;
     }
     else{
