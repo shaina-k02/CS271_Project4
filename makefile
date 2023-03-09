@@ -1,15 +1,22 @@
+all: test usecase
 
-main.cpp: main.o  bst.cpp usecase.cpp
-	g++ main.cpp
+test: test_bst.o
+	g++ -o test test_bst.o
 
-bst.cpp: bst.o
-	g++ bst.cpp
+usecase: usecase.o main.o
+	g++ -o usecase main.o
 
-test_bst.cpp: test_bst.o bst.o
-	g++ test_bst.cpp
+bst.o: bst.cpp
+	g++ -c bst.cpp
 
-usecase.cpp: usecase.o bst.o
-	g++ usecase.cpp
+usecase.o: usecase.cpp bst.o
+	g++ -c usecase.cpp
 
-test_bst_example.cpp: test_bst_example.o best.o
-	g++ test_bst_example.cpp
+test_bst.o: test_bst.cpp bst.cpp
+	g++ -c test_bst.cpp
+
+main.o: main.cpp usecase.cpp
+	g++ -c main.cpp
+
+clean:
+	rm -f all *.o
