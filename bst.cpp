@@ -242,5 +242,19 @@ void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
 }
 
 
+string toString() {
+        stringstream ss;
+        toStringRec(root, ss);
+        return ss.str();
+    }
 
+    void toStringRec(Node* root, stringstream& ss) {
+        if (root == nullptr) {
+            return;
+        }
+
+        ss << root->key << " ";
+        toStringRec(root->left, ss);
+        toStringRec(root->right, ss);
+    }
 
