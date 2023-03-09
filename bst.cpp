@@ -16,6 +16,7 @@ void BST<K,D>::insert(D d, K k){
 
     Node* newNode = new Node;
     newNode->d = d;
+    newNode->k = k;
     newNode->left = nullptr;
     newNode->right = nullptr;
     Node<K,D>*x=root;
@@ -62,7 +63,7 @@ template<typename K, typename D>
 void BST<K,D>::remove(K k){
     Node<K, D>*x=root;
     if (root == NULL) {
-        return root;
+        return;
     }
     while (x->k!=k && x!=nullptr){
         if (k < x->k) {
@@ -99,7 +100,8 @@ template<typename K, typename D>
 D BST<K,D>::max_data(){
     Node<K,D>*x=root;
     if (x==nullptr){
-        return;
+        Data empty;
+        return empty;
     }
     while (x->right != nullptr){
         x=x->right;
@@ -111,7 +113,8 @@ template<typename K, typename D>
 K BST<K,D>::max_key(){
     Node<K,D>*x=root;
     if (x == nullptr) {
-        return -1; // or some other value to indicate an empty tree
+        Key empty;
+        return empty;// or some other value to indicate an empty tree
     }
     while (x->right != nullptr) {
         x = x->right;
@@ -123,7 +126,8 @@ template<typename K, typename D>
 D BST<K,D>::min_data(){
     Node<K,D>*x=root;
     if (x==nullptr){
-        return;
+        Data empty;
+        return empty;
     }
     while (x->left != nullptr){
         x=x->left;
@@ -135,7 +139,8 @@ template<typename K, typename D>
 K BST<K,D>::min_key(){
     Node<K,D>*x=root;
     if (x == nullptr) {
-        return -1; // or some other value to indicate an empty tree
+        Key empty;
+        return empty; // or some other value to indicate an empty tree
     }
     while (x->left != nullptr) {
         x = x->left;
@@ -156,7 +161,8 @@ K BST<K,D>::successor(K k){
         }
     }
     if (x==nullptr){
-        return;
+        Key empty;
+        return empty;
     }
     if (x->right!=nullptr){
         x=x->right;
@@ -177,11 +183,12 @@ template<typename K, typename D>
 string BST<K,D>::in_order(){
     string res="";
     if (root == NULL) {
-        return;
+        return res;
     }
     res+=root->left.in_order();
     res+= std::to_string(root->d);
     res+=root->right.in_order();
+    return res;
 }
 
 template<typename K, typename D>
