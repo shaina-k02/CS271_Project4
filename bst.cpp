@@ -192,9 +192,23 @@ string BST<D,K>::in_order(){
     if (root == NULL) {
         return res;
     }
-    res+=root->left.in_order();
+    Node<D,K>* x=root;
+    while (x->left!=nullptr){
+        res+=std::to_string(x->left->k.k);
+        if(x->right!=nullptr){
+            res+=std::to_string(x->right->k.k);
+        }
+        x=x->left;
+    }
     res+= std::to_string(root->k.k);
-    res+=root->right.in_order();
+    while (x->right!=nullptr){
+        if(x->left!=nullptr){
+            res+=std::to_string(x->left->k.k);
+        }
+        res+=std::to_string(x->right->k.k);
+
+        x=x->right;
+    }
     return res;
 }
 
