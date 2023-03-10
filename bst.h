@@ -9,6 +9,8 @@ class Key
 {
     K k;
 
+    public:
+
     Key(){
     }
 
@@ -22,6 +24,7 @@ class Data
 {
     D d;
 
+    public:
     Data(){    
     }
 
