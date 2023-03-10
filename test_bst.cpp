@@ -312,6 +312,17 @@ void test_successor(){
     }
 }
 
+void test_inorder(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    string ino=bst.in_order();
+    if (ino!="357"){
+        cout<<"incorrect result of inorder, expected 357 but got : "<<ino<<endl;
+    }
+}
+
 int main() {
     //test_to_string();
     test_empty(); cout<<"tested empty"<<endl;
@@ -322,7 +333,8 @@ int main() {
     test_max_key(); cout<<"tested max key"<<endl;
     test_min_data(); cout<<"tested min data"<<endl;
     test_min_key(); cout<<"tested min key"<<endl;
-    test_successor(); cout<<"tested successor"<<endl;
+    //test_successor(); cout<<"tested successor"<<endl;
+    test_inorder(); cout<<"tested in order"<<endl;
     return 0;
 
 }

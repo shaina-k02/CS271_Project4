@@ -193,7 +193,7 @@ string BST<D,K>::in_order(){
         return res;
     }
     res+=root->left.in_order();
-    res+= std::to_string(root->d.d);
+    res+= std::to_string(root->k.k);
     res+=root->right.in_order();
     return res;
 }
