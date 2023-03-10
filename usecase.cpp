@@ -1,8 +1,9 @@
 
 #include <iostream>
-#include "bst.h"
+#include "bst.cpp"
 using namespace std;
 
-int main(){
-    return 0;
+template<typename D, typename K>
+BST<D,K>* create_bst(){
+    
 }
