@@ -93,6 +93,6 @@ public:
     K successor(K k);
     string in_order();
     void trim(K low, K high);
-    void transplant(Node<K, D>* x, Node<K, D>* y); // used for remove
+    void transplant(Node<D, K>* x, Node<D, K>* y); // used for remove
     string to_string();
 };

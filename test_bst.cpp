@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "bst.h"
+#include "bst.cpp"
 using namespace std;
 
 
@@ -189,11 +189,42 @@ void test_to_string() {
 */
 
 void test_empty(){
+    BST<int, int> bst;
+    if (!bst.empty()){
+        cout<<"identified empty as not empty"<<endl;
+    }
+    bst.insert(7,2);
+    bst.insert(3,4);
+    if (bst.empty()){
+        cout<<"identified not empty as empty"<<endl;
+    }
+
     return;
+}
+
+void test_insert(){
+    BST<int, int> bst;
+        bst.insert(2, 1);
+        string bst_str = bst.to_string();
+        if(bst_str != "1") {
+            cout << "Incorrect result of inserting (2, 1). Expected 1 but got : " << bst_str << endl;
+        }
+        bst.insert(3,5);
+        bst_str = bst.to_string();
+        if(bst_str != "1 5") {
+            cout << "Incorrect result of inserting (3, 5). Expected 1 5 but got : " << bst_str << endl;
+        }
+        bst.insert(4,2);
+        bst.insert(7,8);
+        bst_str = bst.to_string();
+        if(bst_str != "1 5 2 8") {
+            cout << "Incorrect result of inserting multiple nodes. Expected 1 5 2 8 but got : " << bst_str << endl;
+        }
 }
 
 int main() {
     //test_to_string();
-    test_empty();
+    test_empty(); cout<<"tested empty"<<endl;
+    test_insert(); cout<<"tested insert"<<endl;
     return 0;
 }

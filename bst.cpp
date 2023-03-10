@@ -23,7 +23,7 @@ void BST<D,K>::insert(D d, K k){
     Node<D,K>*y = nullptr;
     while (x != nullptr){
         y = x;
-        if (k < x->k){
+        if (k < x->k.k){
             x = x->left;
         }
         else{
@@ -34,19 +34,21 @@ void BST<D,K>::insert(D d, K k){
     if (y == nullptr){
         root = newNode;
     }
-    else if (k < y->k){
+    else if (k < y->k.k){
         y->left = newNode;
+        //cout<<"inseting to the left"<<endl;
     }
     else{
         y->right = newNode;
+        //cout<<"Inserting to the right"<<endl;
     }
 }
 
 template<typename D, typename K>
 D BST<D,K>::get(K key){
     Node<D,K>*x = root;
-    while (x != nullptr && x->k != key){
-        if (key < x->k){
+    while (x != nullptr && x->k.k != key){
+        if (key < x->k.k){
             x = x->left;
         }
         else{
@@ -57,7 +59,7 @@ D BST<D,K>::get(K key){
         D empty;
         return empty;
     }
-    return x->d;
+    return x->d.d;
 }
 
 template<typename D, typename K>
@@ -66,11 +68,11 @@ void BST<D,K>::remove(K k){
     if (root == NULL) {
         return;
     }
-    while (x != nullptr && x->k != k){
-        if (k < x->k) {
+    while (x != nullptr && x->k.k != k){
+        if (k < x->k.k) {
             x = x->left;
         }
-        else if (k > x->k) {
+        else if (k > x->k.k) {
             x = x->right;
         }
     }
@@ -109,7 +111,7 @@ D BST<D,K>::max_data(){
     while (x->right != nullptr){
         x = x->right;
     }
-    return x->d;
+    return x->d.d;
 }
 
 template<typename D, typename K>
@@ -122,7 +124,7 @@ K BST<D,K>::max_key(){
     while (x->right != nullptr) {
         x = x->right;
     }
-    return x->k;
+    return x->k.k;
 }
 
 template<typename D, typename K>
@@ -135,7 +137,7 @@ D BST<D,K>::min_data(){
     while (x->left != nullptr){
         x = x->left;
     }
-       return x->d;
+       return x->d.d;
 }
 
 template<typename D, typename K>
@@ -148,15 +150,15 @@ K BST<D,K>::min_key(){
     while (x->left != nullptr) {
         x = x->left;
     }
-    return x->k;
+    return x->k.k;
 
 }
 
 template<typename D, typename K>
 K BST<D,K>::successor(K k){
     Node<D,K>*x=root;
-    while ((x->k!=k)&& (x!=nullptr)){
-        if (k<x->k){
+    while ((x->k.k!=k)&& (x!=nullptr)){
+        if (k<x->k.k){
             x=x->left;
         }
         else{
@@ -172,14 +174,14 @@ K BST<D,K>::successor(K k){
         while(x->left!=nullptr){
             x=x->left;
         }
-        return x->k;
+        return x->k.k;
     }
     Node<D,K>*y=x->p;
     while (y!=nullptr && x==y->right){
         x=y;
         y=y->p;
     }
-    return y->k;
+    return y->k.k;
 }
 
 template<typename D, typename K>
@@ -189,7 +191,7 @@ string BST<D,K>::in_order(){
         return res;
     }
     res+=root->left.in_order();
-    res+= std::to_string(root->d);
+    res+= std::to_string(root->d.d);
     res+=root->right.in_order();
     return res;
 }
@@ -246,18 +248,35 @@ void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
 
 template<typename D, typename K>
 string BST<D,K>::to_string() {
-        stringstream ss;
-        toStringRec(root, ss);
-        return ss.str();
-    }
-
-template<typename D, typename K>
-void toStringRec(Node<D,K>* root, stringstream& ss) {
-        if (root == nullptr) {
-            return;
+        string bststr;
+        Node<D,K>*x=root;
+        while (x!=nullptr){
+            bststr+= std::to_string(x->k.k);
+            if(x==root){
+                if (root->left==nullptr){
+                    x=root->right;
+                }
+                else{
+                    x=root->left;
+                }
+                
+            }
+            else if(x==x->p->left){
+                x=x->p->right;
+            }
+            else if(x==x->p->right){
+                if (x->p->left!=nullptr){
+                x=x->p->left->left;
+                }
+                else{
+                    x=x->left;
+                }
+            }
+            if (x!=nullptr)
+            {
+               bststr+=" ";
+            }
+            
         }
-
-        ss << root->key << " ";
-        toStringRec(root->left, ss);
-        toStringRec(root->right, ss);
+        return bststr;
     }
