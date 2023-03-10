@@ -64,7 +64,7 @@ public:
         k = Key<K>(key);
         d = Data<D>(data);
     }
-    
+
 
 };
 
@@ -81,7 +81,16 @@ public:
 
     ~BST()
     {
+        destructor(root)
         // TODO: Implement the destructor
+    }
+    void destructor(Node<D,K>* root){
+        Node<D,K> *x=root;
+        if (x!=nullptr){
+            destructor(ptr->left);
+            desrructor(ptr->right);
+            delete x;
+        }
     }
 
     bool empty();
