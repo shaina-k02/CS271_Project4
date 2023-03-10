@@ -257,8 +257,10 @@ void BST<D,K>::trim(K low, K high){
     
     return;
 }
-//pre-condition:
-//post-condition:
+
+//pre-condition: x is not null
+//post-condition: tree where the subtree that was rooted at x is replaced
+//with the subtreee that was rooted at y
 template<typename D, typename K>
 void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     if (x->p==nullptr){
@@ -275,8 +277,10 @@ void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     }
 }
 
-//pre-condition:
-//post-condition:
+//pre-condition: no pre condition
+//post-condition: a string bststr is the keys in the order of the tree from top to bottom
+//and left to right. it should read as if looking across the rows.
+//this function makes no changes to the actual BST
 template<typename D, typename K>
 string BST<D,K>::to_string() {
         string bststr;
