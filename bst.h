@@ -81,14 +81,14 @@ public:
 
     ~BST()
     {
-        destructor(root)
+        destructor(root);
         // TODO: Implement the destructor
     }
     void destructor(Node<D,K>* root){
         Node<D,K> *x=root;
         if (x!=nullptr){
-            destructor(ptr->left);
-            desrructor(ptr->right);
+            destructor(x->left);
+            destructor(x->right);
             delete x;
         }
     }
