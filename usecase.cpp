@@ -7,7 +7,6 @@ using namespace std;
 #include <string>
 #include <bitset>
 #include <iomanip>
-
 using namespace std;
 
 int main() {

@@ -2,6 +2,7 @@
 #include "bst.h"
 using namespace std;
 
+//empty()
 //pre-condition: Initialized an instance of class BST
 //post-condition: returns true or false
 template<typename D, typename K>
@@ -12,6 +13,7 @@ bool BST<D,K>::empty(){
     return false;
 }
 
+//insert()
 //pre-condition: none
 //post-condition: bst with the new key-value added while maintaining BST property
 template<typename D, typename K>
@@ -46,6 +48,8 @@ void BST<D,K>::insert(D d, K k){
         //cout<<"Inserting to the right"<<endl;
     }
 }
+
+//get()
 //pre-condition: The presence of the key-data in question in the BST
 //post-condition: Returns the data of the corresponding key in the BST
 template<typename D, typename K>
@@ -66,8 +70,9 @@ D BST<D,K>::get(K key){
     return x->d.d;
 }
 
+//remove()
 //pre-condition: a non-empty BST
-//post-condition:
+//post-condition: BST without the key-data in question while maintaining the BST property
 template<typename D, typename K>
 void BST<D,K>::remove(K k){
     Node<D, K>*x = root;
@@ -107,8 +112,9 @@ void BST<D,K>::remove(K k){
     }
 }
 
-//pre-condition:
-//post-condition:
+//max_data()
+//pre-condition:a non-empty BST
+//post-condition: return the data associated with the max key
 template<typename D, typename K>
 D BST<D,K>::max_data(){
     Node<D,K>*x = root;
@@ -122,8 +128,9 @@ D BST<D,K>::max_data(){
     return x->d.d;
 }
 
-//pre-condition:
-//post-condition:
+//max_key()
+//pre-condition: a non-empty BST
+//post-condition: Returns largest key in BST
 template<typename D, typename K>
 K BST<D,K>::max_key(){
     Node<D,K>*x = root;
@@ -137,8 +144,9 @@ K BST<D,K>::max_key(){
     return x->k.k;
 }
 
-//pre-condition:
-//post-condition:
+//min_data()
+//pre-condition: non-empty BST
+//post-condition: return the data associated with the min key in the tree bst
 template<typename D, typename K>
 D BST<D,K>::min_data(){
     Node<D,K>*x = root;
@@ -151,8 +159,8 @@ D BST<D,K>::min_data(){
     }
        return x->d.d;
 }
-//pre-condition:
-//post-condition:
+//pre-condition: non-empty BST
+//post-condition: Returns smallest key in BST
 template<typename D, typename K>
 K BST<D,K>::min_key(){
     Node<D,K>*x=root;
@@ -166,8 +174,22 @@ K BST<D,K>::min_key(){
     return x->k.k;
 
 }
-//pre-condition:
+
+//Successor()
+
+//pre-condition: 
+//1.	Node k must not be the largest node in the BST. In other words, k must have a node with a larger key value in the BST.
+//2.	If node k has a right child, then the successor of k is the node with the minimum key value in the right subtree of k.
+//3.	If node k does not have a right child, then the successor of k is the lowest ancestor of k whose left child is also an ancestor of k.
+
 //post-condition:
+//1.	If the node k has a right child, the successor node is the node with the minimum key value in the right subtree of k.
+//2.	If the node k does not have a right child, the successor node is the lowest ancestor of k whose left child is also an ancestor of k.
+//3.	If the node k is the largest node in the BST, then the successor function returns NULL.
+//4.	If the successor function is called on a node k that is not present in the BST, then the successor function returns NULL.
+//5.	The successor node y is guaranteed to have a key value greater than the key value of the given node k.
+//6.	If there are multiple nodes with the same minimum key value in the right subtree of k, then the successor node is the one that is closest to the node k in terms of its position in the tree (i.e., it has the shortest path to k).
+
 template<typename D, typename K>
 K BST<D,K>::successor(K k){
     Node<D,K>*x=root;
@@ -201,8 +223,20 @@ K BST<D,K>::successor(K k){
     return y->k.k;
 }
 
-//pre-condition:
+//in_order()
+//pre-condition: 
+//1.	The BST is not empty.
+//2.	Each node in the BST must have a key value.
+//3.	The key values in the BST must satisfy the binary search tree property, which is that the key value of each node must be greater than all key values in its left subtree, and less than all key values in its right subtree.
+
 //post-condition:
+//1.	The nodes of the BST are visited in ascending order of their key values.
+//2.	All nodes of the BST are visited exactly once.
+//3.	The in_order() function does not modify the BST.
+//4.	The in_order() function returns the nodes of the BST in ascending order of their key values.
+//5.	If the BST is empty, the in_order() function does not perform any traversal and returns an empty result.
+//6.	The in_order() function can be used to perform operations on each node of the BST, such as printing the key values or updating the node data, while visiting the nodes in ascending order of their key values.
+
 template<typename D, typename K>
 string BST<D,K>::in_order(){
     string res="";
@@ -230,7 +264,14 @@ string BST<D,K>::in_order(){
     }
     return res;
 }
-//pre-condition:
+
+//trim()
+//pre-condition: 
+//1.	The BST is not empty.
+//2.	The key values in the BST must satisfy the binary search tree property, which is that the key value of each node must be greater than all key values in its left subtree, and less than all key values in its right subtree.
+//3.	The high value must be greater than or equal to the low value.
+//4.	The BST may contain nodes with key values outside the range [low, high], inclusive
+
 //post-condition:
 template<typename D, typename K>
 void BST<D,K>::trim(K low, K high){
