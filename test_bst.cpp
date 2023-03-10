@@ -323,6 +323,26 @@ void test_inorder(){
     }
 }
 
+void test_trim(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    bst.trim(4,6);
+    string trimmed=bst.to_string();
+    if (trimmed!="5"){
+        cout<< "incorrect result of trim. Expected 5 but got : "<<trimmed<<endl;
+    }
+    bst.insert(2,3);
+    bst.insert(3, 6);
+    bst.insert(20,13);
+    bst.trim(2,11);
+    trimmed=bst.to_string();
+    if (trimmed!="5 3 6"){
+        cout<< "incorrect result of trim. Expected 5 3 6 but got : "<<trimmed<<endl;
+    }
+}
+
 int main() {
     //test_to_string();
     test_empty(); cout<<"tested empty"<<endl;
@@ -335,6 +355,7 @@ int main() {
     test_min_key(); cout<<"tested min key"<<endl;
     //test_successor(); cout<<"tested successor"<<endl;
     test_inorder(); cout<<"tested in order"<<endl;
+    test_trim(); cout<<"tested trim"<<endl;
     return 0;
 
 }

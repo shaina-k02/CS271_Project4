@@ -211,7 +211,9 @@ string BST<D,K>::in_order(){
     }
     Node<D,K>* x=root;
     while (x->left!=nullptr){
-        res+=std::to_string(x->left->k.k);
+        if(x->left!=nullptr){
+            res+=std::to_string(x->left->k.k);
+        }
         if(x->right!=nullptr){
             res+=std::to_string(x->right->k.k);
         }
@@ -234,33 +236,25 @@ template<typename D, typename K>
 void BST<D,K>::trim(K low, K high){
 
     // Trims the BST such that all nodes with values outside the range [low, high] are removed.
-    /*TreeNode* trim(TreeNode* root, int low, int high) 
-    if (root == NULL) {
+    if (root == nullptr) {
         return;
     }
-    
-    if (root->val < low) {
-        // The current node's value is outside the range, so we remove it and trim its right subtree.
-        TreeNode* right = root->right;
-        delete root;
-        root = right;
-        trim(root, low, high);
-    } else if (root->val > high) {
-        // The current node's value is outside the range, so we remove it and trim its left subtree.
-        TreeNode* left = root->left;
-        delete root;
-        root = left;
-        trim(root, low, high);
-    } else {
-        // The current node's value is within the range, so we recursively trim its left and right subtrees.
-        trim(root->left, low, high);
-        trim(root->right, low, high);
+    Node<D,K>* x=root;
+    while (x!=nullptr){
+        if (x->k.k <low ||x->k.k > high ){
+            remove(x->k.k);
+        }
+        x=x->left;
+
+    }
+    while (x!=nullptr){
+        if (x->k.k <low ||x->k.k > high ){
+            remove(x->k.k);
+        }
+        x=x->right;
+
     }
     
-    // Recursively trim the left and right subtrees.
-    root->left = trim(root->left, low, high);
-    root->right = trim(root->right, low, high);
-    */
     return;
 }
 //pre-condition:
