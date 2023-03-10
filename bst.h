@@ -86,4 +86,5 @@ class BST
     string in_order();
     void trim(K low, K high);
     void transplant(Node<K, D>* x, Node<K, D>* y);//used for remove
+    string to_string();
 };

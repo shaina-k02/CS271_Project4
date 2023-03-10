@@ -241,14 +241,15 @@ void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     }
 }
 
-
-string toString() {
+template<typename D, typename K>
+string BST<D,K>::to_string() {
         stringstream ss;
         toStringRec(root, ss);
         return ss.str();
     }
 
-    void toStringRec(Node* root, stringstream& ss) {
+template<typename D, typename K>
+void toStringRec(Node* root, stringstream& ss) {
         if (root == nullptr) {
             return;
         }
