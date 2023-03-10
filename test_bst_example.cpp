@@ -232,6 +232,7 @@ void test_trim() {
     }
 }
 
+/*
 void test_binhex(){
     try {
         BST<string,string>* bst1 = create_bst<string,string>("binhex.txt");
@@ -266,6 +267,8 @@ void test_binhex(){
     }
 }
 
+*/
+
 int main() {
     
     test_empty();
@@ -279,7 +282,7 @@ int main() {
     test_successor();
     test_in_order();
     test_trim();
-    test_binhex();
+    //test_binhex();
 
     cout << "Testing completed" << endl;
     

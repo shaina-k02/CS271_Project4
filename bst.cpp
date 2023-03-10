@@ -249,7 +249,7 @@ string BST<D,K>::to_string() {
     }
 
 template<typename D, typename K>
-void toStringRec(Node* root, stringstream& ss) {
+void toStringRec(Node<D,K>* root, stringstream& ss) {
         if (root == nullptr) {
             return;
         }
