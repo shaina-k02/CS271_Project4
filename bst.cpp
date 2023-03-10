@@ -2,7 +2,8 @@
 #include "bst.h"
 using namespace std;
 
-
+//pre-condition: Initialized an instance of class BST
+//post-condition: returns true or false
 template<typename D, typename K>
 bool BST<D,K>::empty(){
     if (root == nullptr){
@@ -11,6 +12,8 @@ bool BST<D,K>::empty(){
     return false;
 }
 
+//pre-condition: none
+//post-condition: bst with the new key-value added while maintaining BST property
 template<typename D, typename K>
 void BST<D,K>::insert(D d, K k){
 
@@ -43,7 +46,8 @@ void BST<D,K>::insert(D d, K k){
         //cout<<"Inserting to the right"<<endl;
     }
 }
-
+//pre-condition: The presence of the key-data in question in the BST
+//post-condition: Returns the data of the corresponding key in the BST
 template<typename D, typename K>
 D BST<D,K>::get(K key){
     Node<D,K>*x = root;
@@ -62,6 +66,8 @@ D BST<D,K>::get(K key){
     return x->d.d;
 }
 
+//pre-condition: a non-empty BST
+//post-condition:
 template<typename D, typename K>
 void BST<D,K>::remove(K k){
     Node<D, K>*x = root;
@@ -101,6 +107,8 @@ void BST<D,K>::remove(K k){
     }
 }
 
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 D BST<D,K>::max_data(){
     Node<D,K>*x = root;
@@ -114,6 +122,8 @@ D BST<D,K>::max_data(){
     return x->d.d;
 }
 
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 K BST<D,K>::max_key(){
     Node<D,K>*x = root;
@@ -127,6 +137,8 @@ K BST<D,K>::max_key(){
     return x->k.k;
 }
 
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 D BST<D,K>::min_data(){
     Node<D,K>*x = root;
@@ -139,7 +151,8 @@ D BST<D,K>::min_data(){
     }
        return x->d.d;
 }
-
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 K BST<D,K>::min_key(){
     Node<D,K>*x=root;
@@ -153,7 +166,8 @@ K BST<D,K>::min_key(){
     return x->k.k;
 
 }
-
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 K BST<D,K>::successor(K k){
     Node<D,K>*x=root;
@@ -187,6 +201,8 @@ K BST<D,K>::successor(K k){
     return y->k.k;
 }
 
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 string BST<D,K>::in_order(){
     string res="";
@@ -212,7 +228,8 @@ string BST<D,K>::in_order(){
     }
     return res;
 }
-
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 void BST<D,K>::trim(K low, K high){
 
@@ -246,7 +263,8 @@ void BST<D,K>::trim(K low, K high){
     */
     return;
 }
-
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     if (x->p==nullptr){
@@ -263,6 +281,8 @@ void BST<D,K>::transplant(Node<D, K>* x, Node<D, K>* y){
     }
 }
 
+//pre-condition:
+//post-condition:
 template<typename D, typename K>
 string BST<D,K>::to_string() {
         string bststr;
