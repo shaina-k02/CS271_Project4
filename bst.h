@@ -1,57 +1,62 @@
-//BST declaration
+///BST declaration
 
-#include<iostream>
+#include <iostream>
+#include <string>
+
 using namespace std;
-
 
 template<typename K>
 class Key
 {
+public:
     K k;
 
-    Key(){
-    }
+    Key() {}
 
-    Key(K key){
-        k=key;
+    Key(K key)
+    {
+        k = key;
     }
 };
 
 template<typename D>
 class Data
 {
+public:
     D d;
 
-    Data(){    
-    }
+    Data() {}
 
-    Data(D data){
-        d=data;
+    Data(D data)
+    {
+        d = data;
     }
 };
 
 template<typename D, typename K>
 class Node
 {
-    public:
+public:
     Node<D, K> *p; 
     Node<D, K> *left;
     Node<D, K> *right;
     Key<K> k;
     Data<D> d;
 
-    Node(){
-        p=nullptr;
-        left=nullptr;
-        right=nullptr;
+    Node()
+    {
+        p = nullptr;
+        left = nullptr;
+        right = nullptr;
     }
 
-    Node(K key, D data){
-        p=nullptr;
-        left=nullptr;
-        right=nullptr;
-        k= Key<K>(key);
-        d= Data<D>(data);
+    Node(K key, D data)
+    {
+        p = nullptr;
+        left = nullptr;
+        right = nullptr;
+        k = Key<K>(key);
+        d = Data<D>(data);
     }
 
 };
@@ -61,18 +66,16 @@ class BST
 {
     Node<D, K> *root;
 
-
-    public:
-    BST(){
-        root=nullptr;
-    }
-    ~BST(){
-       Node<D,K>*x=root;
-       Node<D,K>*r=x->right;
-       Node<D,K>*l=x->left;
+public:
+    BST()
+    {
+        root = nullptr;
     }
 
-
+    ~BST()
+    {
+        // TODO: Implement the destructor
+    }
 
     bool empty();
     void insert(D d, K k);
@@ -85,6 +88,6 @@ class BST
     K successor(K k);
     string in_order();
     void trim(K low, K high);
-    void transplant(Node<K, D>* x, Node<K, D>* y);//used for remove
+    void transplant(Node<K, D>* x, Node<K, D>* y); // used for remove
     string to_string();
 };
