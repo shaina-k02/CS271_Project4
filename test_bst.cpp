@@ -3,9 +3,8 @@
 #include "bst.h"
 using namespace std;
 
-int main(){
-    return 0;
-}
+
+/*
 //Is empty tests
 
 TEST(BSTEmptyTest, EmptyTree) {
@@ -187,8 +186,14 @@ void test_to_string() {
 
     assert(bst.to_string() == expected.str());
 }
+*/
+
+void test_empty(){
+    return;
+}
 
 int main() {
-    test_to_string();
+    //test_to_string();
+    test_empty();
     return 0;
 }

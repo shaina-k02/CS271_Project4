@@ -135,4 +135,5 @@ D BST<D,K>::min_data(){
     while (x->left != nullptr){
         x = x->left;
     }
+}
    
