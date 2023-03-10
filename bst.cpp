@@ -157,6 +157,10 @@ K BST<D,K>::min_key(){
 template<typename D, typename K>
 K BST<D,K>::successor(K k){
     Node<D,K>*x=root;
+      if (x==nullptr){
+        K empty;
+        return empty;
+    }
     while ((x->k.k!=k)&& (x!=nullptr)){
         if (k<x->k.k){
             x=x->left;
@@ -165,10 +169,7 @@ K BST<D,K>::successor(K k){
             x=x->right;
         }
     }
-    if (x==nullptr){
-        K empty;
-        return empty;
-    }
+  
     if (x->right!=nullptr){
         x=x->right;
         while(x->left!=nullptr){
