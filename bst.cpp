@@ -11,7 +11,7 @@ bool BST<D,K>::empty(){
     return false;
 }
 
-template<typename K, typename D>
+template<typename D, typename K>
 void BST<D,K>::insert(D d, K k){
 
     Node<D,K>* newNode = new Node<D,K>;
