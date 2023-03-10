@@ -222,9 +222,107 @@ void test_insert(){
         }
 }
 
+void test_get(){
+    BST<int, int> bst;
+        int val = bst.get(0);
+        if(val!=1) {
+            cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
+        }
+        bst.insert(2 ,1);
+        val = bst.get(1);
+        if(val != 2) {
+            cout << "Incorrect get result. Expected 2 but got : " << val << endl;
+        }
+}
+
+void test_remove(){
+  
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    bst.remove(3);
+    string bst_str = bst.to_string();
+    if(bst_str != "7 5") {
+        cout << "Incorrect result of removing (3). Expected 7 5 but got : " << bst_str << endl;
+    }
+    bst.remove(7);
+    bst_str=bst.to_string();
+    if(bst_str != "5") {
+        cout << "Incorrect result of removing (7). Expected 5 but got : " << bst_str << endl;
+    }
+}
+
+void test_max_data(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    int max=bst.max_data();
+    if (max!=5){
+        cout<< "Incorrect result of max data. Expected 5 but got : "<<std::to_string(max)<<endl;
+    }
+}
+
+void test_max_key(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    int max=bst.max_key();
+    if (max!=7){
+        cout<< "Incorrect result of max key. Expected 7 but got : "<<std::to_string(max)<<endl;
+    }
+}
+
+void test_min_data(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    int min=bst.min_data();
+    if (min!=2){
+        cout<< "Incorrect result of min data. Expected 2 but got : "<<std::to_string(min)<<endl;
+    }
+}
+
+void test_min_key(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    int min=bst.min_key();
+    if (min!=3){
+        cout<< "Incorrect result of min key. Expected 3 but got : "<<std::to_string(min)<<endl;
+    }
+}
+
+void test_successor(){
+    BST<int, int> bst;
+    bst.insert(5,7);
+    bst.insert(2,3);
+    bst.insert(3,5);
+    int suc= bst.successor(5);
+    if (suc!=7){
+        cout<< "Incorrect result of successor. Expected 7 but got : "<<std::to_string(suc)<<endl;
+    }
+    suc= bst.successor(7);
+    if (suc!=5){
+        cout<< "Incorrect result of successor. Expected 5 but got : "<<std::to_string(suc)<<endl;
+    }
+}
+
 int main() {
     //test_to_string();
     test_empty(); cout<<"tested empty"<<endl;
     test_insert(); cout<<"tested insert"<<endl;
+    test_get(); cout<<"tested get"<<endl;
+    test_remove(); cout<<"tested remove"<<endl;
+    test_max_data(); cout<<"tested max data"<<endl;
+    test_max_key(); cout<<"tested max key"<<endl;
+    test_min_data(); cout<<"tested min data"<<endl;
+    test_min_key(); cout<<"tested min key"<<endl;
+    test_successor(); cout<<"tested successor"<<endl;
     return 0;
+
 }

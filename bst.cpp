@@ -144,7 +144,7 @@ template<typename D, typename K>
 K BST<D,K>::min_key(){
     Node<D,K>*x=root;
     if (x == nullptr) {
-        Key<K> empty;
+        K empty;
         return empty; // or some other value to indicate an empty tree
     }
     while (x->left != nullptr) {
@@ -166,7 +166,7 @@ K BST<D,K>::successor(K k){
         }
     }
     if (x==nullptr){
-        Key<K> empty;
+        K empty;
         return empty;
     }
     if (x->right!=nullptr){
@@ -179,7 +179,9 @@ K BST<D,K>::successor(K k){
     Node<D,K>*y=x->p;
     while (y!=nullptr && x==y->right){
         x=y;
-        y=y->p;
+        if (y->p!=nullptr){
+            y=y->p;
+        }
     }
     return y->k.k;
 }

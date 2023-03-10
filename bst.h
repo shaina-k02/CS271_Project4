@@ -30,6 +30,7 @@ public:
 
     public:
     Data(){    
+    
     }
 
     Data(D data)
@@ -63,6 +64,7 @@ public:
         k = Key<K>(key);
         d = Data<D>(data);
     }
+    
 
 };
 
